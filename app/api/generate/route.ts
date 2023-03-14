@@ -10,7 +10,7 @@ export const config = {
 
 
 
-  export default async function POST(req: Request): Promise<Response> {
+  export async function POST(req: Request): Promise<Response> {
 
     const body = await req.json()
     console.log(body)
