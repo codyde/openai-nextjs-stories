@@ -4,7 +4,7 @@ export const config = {
     runtime: "edge",
   };
 
-export async function POST(req: Request): Promise<Response> {
+export async function handler(req: Request): Promise<Response> {
 
     if (!process.env.OPENAITOKEN) {
         throw new Error("Missing env var from OpenAI");
@@ -32,9 +32,7 @@ export async function POST(req: Request): Promise<Response> {
     const stream = await OpenAIStream(payload);
     console.log(stream)
     // return new Response(stream);
-    return new Response(stream, {
-        headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      });
+    return new Response(stream);
     }
 
-export default POST
+export default handler
