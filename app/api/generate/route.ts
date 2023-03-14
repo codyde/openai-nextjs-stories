@@ -10,7 +10,7 @@ export const config = {
 
 
 
-const handler = async(req: Request): Promise<Response> => {
+  export default async function POST(req: Request): Promise<Response> {
 
     const body = await req.json()
     console.log(body)
@@ -36,5 +36,3 @@ const handler = async(req: Request): Promise<Response> => {
     // return new Response(stream);
     return new Response(stream);
     }
-
-export default handler
