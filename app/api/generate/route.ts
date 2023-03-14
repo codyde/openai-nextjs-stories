@@ -8,9 +8,8 @@ export const config = {
     runtime: "edge",
   };
 
-
-
   export async function POST(req: Request): Promise<Response> {
+    console.log("1")
 
     const body = await req.json()
     console.log(body)
