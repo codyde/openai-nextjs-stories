@@ -10,6 +10,7 @@ export const config = {
 
   export async function POST(req: Request): Promise<Response> {
     
+    console.log(await req.json)
 
     const { prompt } = (await req.json()) as {
         prompt?: string;
