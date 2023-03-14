@@ -1,10 +1,12 @@
 import { OpenAIStream, OpenAIStreamPayload } from "../../../lib/OpenAIStream";
 
-// export const config = {
-//     runtime: "edge",
-//   };
+export const config = {
+    runtime: "edge",
+  };
 
-export async function POST(req: Request): Promise<Response> {
+export async function handler(req: Request) {
+
+    if (req.method === 'POST'){
     if (!process.env.OPENAITOKEN) {
         throw new Error("Missing env var from OpenAI");
     }
@@ -32,4 +34,6 @@ export async function POST(req: Request): Promise<Response> {
     console.log(stream)
     // return new Response(stream);
     return new Response(stream)
-}
+}}
+
+export default handler
