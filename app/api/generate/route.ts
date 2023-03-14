@@ -1,6 +1,8 @@
 import { OpenAIStream, OpenAIStreamPayload } from "../../../lib/OpenAIStream";
-import { NextResponse } from 'next/server';
-import { NextApiResponse } from 'next';
+
+export const config = {
+    runtime: "edge",
+  };
 
 export async function POST(req: Request): Promise<Response> {
     if (!process.env.OPENAITOKEN) {
