@@ -35,11 +35,11 @@ export default function Home() {
     // setLoading(true);
 
     const response = await fetch("/api/generate", {
-      body: JSON.stringify(prompt),
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      method: "POST",
+      body: JSON.stringify(prompt),
     });
 
     const result = response.body;
