@@ -29,7 +29,7 @@ export default function Home() {
 
   const handleSubmit = async (e: any) => {
     console.log(e);
-    const prompt = `write me a ${tone} story about a ${gender} named ${name} who is ${age} years old and becoming more ${feeling}. Use the maximum length and keep it safe for children.`;
+    const prompt = `write me a ${tone} story about a ${gender} named ${name} who is ${age} years old and becoming more ${feeling}. Keep it safe for children.`;
     e.preventDefault();
     setGeneratedStory("");
     // setLoading(true);
