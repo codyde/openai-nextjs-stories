@@ -9,7 +9,7 @@ export const config = {
   };
 
   export async function POST(req: Request): Promise<Response> {
-    console.log("1")
+    console.log(req)
 
     const body = await req.json()
     console.log(body)
