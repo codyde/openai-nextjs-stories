@@ -1,36 +1,40 @@
 import { OpenAIStream, OpenAIStreamPayload } from "../../../lib/OpenAIStream";
 
 if (!process.env.OPENAITOKEN) {
-  throw new Error("Missing env var from OpenAI");
+    throw new Error("Missing env var from OpenAI");
 }
 
 export const config = {
-  runtime: "edge",
-};
-
-const handler = async (req: Request): Promise<Response> => {
-  const prompt = await req.json()
-
-  console.log(prompt)
-
-  if (!prompt) {
-    return new Response("No prompt in the request", { status: 400 });
-  }
-
-  const payload: OpenAIStreamPayload = {
-    model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: prompt }],
-    temperature: 0.7,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-    max_tokens: 4000,
-    stream: true,
-    n: 1,
+    runtime: "edge",
   };
 
-  const stream = await OpenAIStream(payload);
-  return new Response(stream);
-};
+  export async function POST(req: Request): Promise<Response> {
+    
+    console.log(await req.json())
 
-export default handler;
+    const { prompt } = (await req.json()) as {
+        prompt?: string;
+    };
+    
+
+    if (!prompt) {
+        return new Response("No prompt in the request", { status: 400 });
+    };
+
+    const payload: OpenAIStreamPayload = {
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.7,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        max_tokens: 4000,
+        stream: true,
+        n: 1,
+    };
+
+    const stream = await OpenAIStream(payload);
+    console.log(stream)
+    // return new Response(stream);
+    return new Response(stream);
+    }
